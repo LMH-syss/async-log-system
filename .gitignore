@@ -1,0 +1,43 @@
+# Build directories
+build/
+build*/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Runtime logs
+logs/
+test_logs/
+*.log
+
+# Binary / object files
+*.exe
+*.dll
+*.lib
+*.a
+*.obj
+*.o
+*.pdb
+*.ilk
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.vcxproj.user
+Debug/
+Release/
+x64/
+Win32/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Internal planning / agent files
+TODO.md
+AGENTS.md
+AsyncLogSystem_SPEC.md
