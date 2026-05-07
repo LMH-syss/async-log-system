@@ -2,6 +2,7 @@
 
 #include "BlockingQueue.h"
 #include "FileAppender.h"
+#include "LoggerConfig.h"
 #include "LogLevel.h"
 #include "LogMessage.h"
 
@@ -20,6 +21,8 @@ public:
     Logger& operator=(const Logger&) = delete;
 
     void init(const std::string& logDir, const std::string& baseName, std::size_t maxFileSize);
+    void init(const LoggerConfig& config);
+    bool initFromConfig(const std::string& configPath);
     void setLevel(LogLevel level);
     void log(LogLevel level, const std::string& message, const char* file, int line);
     void shutdown();
@@ -34,6 +37,7 @@ private:
     std::atomic<int> level_{static_cast<int>(LogLevel::DEBUG)};
     std::atomic<bool> initialized_{false};
     std::atomic<bool> shutdownCalled_{false};
+    std::atomic<int> queueFullPolicy_{static_cast<int>(QueueFullPolicy::BLOCK)};
     BlockingQueue<LogMessage> queue_;
     std::unique_ptr<FileAppender> appender_;
     std::thread worker_;

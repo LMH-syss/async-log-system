@@ -8,6 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_library(async_log_system
     src/FileAppender.cpp
+    src/LoggerConfig.cpp
     src/Logger.cpp
 )
 
@@ -30,6 +31,15 @@ add_executable(async_log_test
 )
 
 target_link_libraries(async_log_test
+    PRIVATE
+        async_log_system
+)
+
+add_executable(async_log_stress_test
+    examples/stress_test.cpp
+)
+
+target_link_libraries(async_log_stress_test
     PRIVATE
         async_log_system
 )
